@@ -39,6 +39,14 @@ def loadOperatorIcons():
     return (add, subtract, multiply, divide, percentage, equalTo)
 
 
+def loadOtherIcons():
+    abspath = "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\others\\"
+    clear = PhotoImage(file=f"{abspath}clear.png")
+    backspace = PhotoImage(file=f"{abspath}backspace.png")
+    dot = PhotoImage(file=f"{abspath}decimal.png")
+    return (clear, backspace, dot)
+
+
 digitIconsTuple = loadDigitIcons()
 zero_btn = Button(root, image=digitIconsTuple[0], border="0")
 one_btn = Button(root, image=digitIconsTuple[1], border="0")
@@ -59,12 +67,19 @@ divide_btn = Button(root, image=divideIcon, border="0")
 percentage_btn = Button(root, image=percentageIcon, border="0")
 equalTo_btn = Button(root, image=equalToIcon, border="0")
 
+clearIcons, backspaceIcon, decimalIcon = loadOtherIcons()
+clear_btn = Button(root, image=clearIcons, border="0")
+backspaceIcon_btn = Button(root, image=backspaceIcon, border="0")
+decimalIcon_btn = Button(root, image=decimalIcon, border="0")
+
 
 # Packing the buttons
 # space between two button on x-axis (column width) = 120 units
 # space between two rows on y-axis (row height) = 120 units
 
 # 0th row
+clear_btn.place(x=50, y=80)
+backspaceIcon_btn.place(x=170, y=80)
 percentage_btn.place(x=290, y=80)
 divide_btn.place(x=410, y=80)
 # first row
@@ -84,6 +99,7 @@ three_btn.place(x=290, y=440)
 add_btn.place(x=410, y=440)
 # 4th row
 zero_btn.place(x=170, y=560)
+decimalIcon_btn.place(x=290, y=560)
 equalTo_btn.place(x=410, y=560)
 
 
