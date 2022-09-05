@@ -13,7 +13,7 @@ root.geometry("600x700")
 # root.configure(bg="black")
 
 
-def loadDigitsImages():
+def loadDigitIcons():
     abspath = "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\digits\\"
     zero = PhotoImage(file=f"{abspath}zero.png")
     one = PhotoImage(file=f"{abspath}one.png")
@@ -28,17 +28,17 @@ def loadDigitsImages():
     return (zero, one, two, three, four, five, six, seven, eight, nine)
 
 
-digitImagesTuple = loadDigitsImages()
-zero_btn = Button(root, image=digitImagesTuple[0], border="0")
-one_btn = Button(root, image=digitImagesTuple[1], border="0")
-two_btn = Button(root, image=digitImagesTuple[2], border="0")
-three_btn = Button(root, image=digitImagesTuple[3], border="0")
-four_btn = Button(root, image=digitImagesTuple[4], border="0")
-five_btn = Button(root, image=digitImagesTuple[5], border="0")
-six_btn = Button(root, image=digitImagesTuple[6], border="0")
-seven_btn = Button(root, image=digitImagesTuple[7], border="0")
-eight_btn = Button(root, image=digitImagesTuple[8], border="0")
-nine_btn = Button(root, image=digitImagesTuple[9], border="0")
+digitIconsTuple = loadDigitIcons()
+zero_btn = Button(root, image=digitIconsTuple[0], border="0")
+one_btn = Button(root, image=digitIconsTuple[1], border="0")
+two_btn = Button(root, image=digitIconsTuple[2], border="0")
+three_btn = Button(root, image=digitIconsTuple[3], border="0")
+four_btn = Button(root, image=digitIconsTuple[4], border="0")
+five_btn = Button(root, image=digitIconsTuple[5], border="0")
+six_btn = Button(root, image=digitIconsTuple[6], border="0")
+seven_btn = Button(root, image=digitIconsTuple[7], border="0")
+eight_btn = Button(root, image=digitIconsTuple[8], border="0")
+nine_btn = Button(root, image=digitIconsTuple[9], border="0")
 
 # Packing the buttons
 # space between two button on x-axis (column width) = 120 units
