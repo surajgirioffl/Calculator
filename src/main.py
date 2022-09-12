@@ -59,30 +59,20 @@ class PlaceIcons:
     def __init__(self, master: Tk, border: str = "0") -> None:
         self.root = master
         self.border = border
+        self.digitButtons = []
 
     def createDigitButtons(self) -> None:
+        """
+            summary:
+                Creates digit buttons and stores them in a list 'digitButtons' attribute of the instance.
+                digitButtons is a list of 10 buttons in which button are stored in the order of their index.
+                E.g., digitButtons[0] is the button for 0, digitButtons[1] is the button for 1 and so on.
+        """
         digitIconsTuple = IconsLoader(
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\digits\\").loadDigitIcons()
-        self.zero_btn = Button(
-            self.root, image=digitIconsTuple[0], border=self.border)
-        self.one_btn = Button(
-            self.root, image=digitIconsTuple[1], border=self.border)
-        self.two_btn = Button(
-            self.root, image=digitIconsTuple[2], border=self.border)
-        self.three_btn = Button(
-            self.root, image=digitIconsTuple[3], border=self.border)
-        self.four_btn = Button(
-            self.root, image=digitIconsTuple[4], border=self.border)
-        self.five_btn = Button(
-            self.root, image=digitIconsTuple[5], border=self.border)
-        self.six_btn = Button(
-            self.root, image=digitIconsTuple[6], border=self.border)
-        self.seven_btn = Button(
-            self.root, image=digitIconsTuple[7], border=self.border)
-        self.eight_btn = Button(
-            self.root, image=digitIconsTuple[8], border=self.border)
-        self.nine_btn = Button(
-            self.root, image=digitIconsTuple[9], border=self.border)
+        for i in range(10):
+            self.digitButtons.append(Button(
+                self.root, image=digitIconsTuple[i], border=self.border))
 
     def createOperatorButtons(self) -> None:
         addIcon, subtractIcon, multiplyIcon, divideIcon, percentageIcon, equalToIcon = IconsLoader(
@@ -120,22 +110,22 @@ class PlaceIcons:
         self.percentage_btn.place(x=290, y=80)
         self.divide_btn.place(x=410, y=80)
         # first row
-        self.seven_btn.place(x=50, y=200)
-        self.eight_btn.place(x=170, y=200)
-        self.nine_btn.place(x=290, y=200)
+        self.digitButtons[7].place(x=50, y=200)  # for button 7
+        self.digitButtons[8].place(x=170, y=200)  # for button 8
+        self.digitButtons[9].place(x=290, y=200)  # for button 9
         self.multiply_btn.place(x=410, y=200)
         # 2nd row
-        self.four_btn.place(x=50, y=320)
-        self.five_btn.place(x=170, y=320)
-        self.six_btn.place(x=290, y=320)
+        self.digitButtons[4].place(x=50, y=320)  # for button 4
+        self.digitButtons[5].place(x=170, y=320)  # for button 5
+        self.digitButtons[6].place(x=290, y=320)  # for button 6
         self.subtract_btn.place(x=410, y=320)
         # 3rd row
-        self.one_btn.place(x=50, y=440)
-        self.two_btn.place(x=170, y=440)
-        self.three_btn.place(x=290, y=440)
+        self.digitButtons[1].place(x=50, y=440)  # for button 1
+        self.digitButtons[2].place(x=170, y=440)  # for button 2
+        self.digitButtons[3].place(x=290, y=440)  # for button 3
         self.add_btn.place(x=410, y=440)
         # 4th row
-        self.zero_btn.place(x=170, y=560)
+        self.digitButtons[0].place(x=170, y=560)  # for button 0
         self.decimalIcon_btn.place(x=290, y=560)
         self.equalTo_btn.place(x=410, y=560)
 
