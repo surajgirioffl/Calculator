@@ -3,14 +3,12 @@
      @author: Suraj Kumar Giri.
      @Date: 05-09-2022 (Started)
      @Time: 02: 34: 39 (Started)
+     @last modified: 13th Sep 2022
 """
+
 from tkinter import *
 from sys import path
 path[0] = "D:\\Programming\\Projects\\Python\\GUI Projects\\Calculator"
-root = Tk()  # master/root windows
-root.title("Calculator")
-root.geometry("600x850")
-# root.configure(bg="black")
 
 
 class IconsLoader:
@@ -26,7 +24,7 @@ class IconsLoader:
         return self.__str__()
 
     def loadDigitIcons(self) -> tuple[PhotoImage, ...]:
-        abspath = "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\digits\\"
+        abspath = self.abspath
         zero = PhotoImage(file=f"{abspath}zero.png")
         one = PhotoImage(file=f"{abspath}one.png")
         two = PhotoImage(file=f"{abspath}two.png")
@@ -40,7 +38,7 @@ class IconsLoader:
         return (zero, one, two, three, four, five, six, seven, eight, nine)
 
     def loadOperatorIcons(self) -> tuple[PhotoImage, ...]:
-        abspath = "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\operators\\"
+        abspath = self.abspath
         add = PhotoImage(file=f"{abspath}add.png")
         subtract = PhotoImage(file=f"{abspath}subtract.png")
         multiply = PhotoImage(file=f"{abspath}multiply.png")
@@ -50,7 +48,7 @@ class IconsLoader:
         return (add, subtract, multiply, divide, percentage, equalTo)
 
     def loadOtherIcons(self) -> tuple[PhotoImage, ...]:
-        abspath = "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\others\\"
+        abspath = self.abspath
         clear = PhotoImage(file=f"{abspath}clear.png")
         backspace = PhotoImage(file=f"{abspath}backspace.png")
         dot = PhotoImage(file=f"{abspath}decimal.png")
@@ -58,36 +56,58 @@ class IconsLoader:
 
 
 class PlaceIcons:
-    def __init__(self, master: str, border: str = "0") -> None:
-        ...
+    def __init__(self, master: Tk, border: str = "0") -> None:
+        self.root = master
+        self.border = border
 
     def createDigitButtons(self) -> None:
-        digitIconsTuple = IconsLoader().loadDigitIcons()
-        self.zero_btn = Button(root, image=digitIconsTuple[0], border="0")
-        self.one_btn = Button(root, image=digitIconsTuple[1], border="0")
-        self.two_btn = Button(root, image=digitIconsTuple[2], border="0")
-        self.three_btn = Button(root, image=digitIconsTuple[3], border="0")
-        self.four_btn = Button(root, image=digitIconsTuple[4], border="0")
-        self.five_btn = Button(root, image=digitIconsTuple[5], border="0")
-        self.six_btn = Button(root, image=digitIconsTuple[6], border="0")
-        self.seven_btn = Button(root, image=digitIconsTuple[7], border="0")
-        self.eight_btn = Button(root, image=digitIconsTuple[8], border="0")
-        self.nine_btn = Button(root, image=digitIconsTuple[9], border="0")
+        digitIconsTuple = IconsLoader(
+            "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\digits\\").loadDigitIcons()
+        self.zero_btn = Button(
+            self.root, image=digitIconsTuple[0], border=self.border)
+        self.one_btn = Button(
+            self.root, image=digitIconsTuple[1], border=self.border)
+        self.two_btn = Button(
+            self.root, image=digitIconsTuple[2], border=self.border)
+        self.three_btn = Button(
+            self.root, image=digitIconsTuple[3], border=self.border)
+        self.four_btn = Button(
+            self.root, image=digitIconsTuple[4], border=self.border)
+        self.five_btn = Button(
+            self.root, image=digitIconsTuple[5], border=self.border)
+        self.six_btn = Button(
+            self.root, image=digitIconsTuple[6], border=self.border)
+        self.seven_btn = Button(
+            self.root, image=digitIconsTuple[7], border=self.border)
+        self.eight_btn = Button(
+            self.root, image=digitIconsTuple[8], border=self.border)
+        self.nine_btn = Button(
+            self.root, image=digitIconsTuple[9], border=self.border)
 
     def createOperatorButtons(self) -> None:
-        addIcon, subtractIcon, multiplyIcon, divideIcon, percentageIcon, equalToIcon = IconsLoader().loadOperatorIcons()
-        self.add_btn = Button(root, image=addIcon, border="0")
-        self.subtract_btn = Button(root, image=subtractIcon, border="0")
-        self.multiply_btn = Button(root, image=multiplyIcon, border="0")
-        self.divide_btn = Button(root, image=divideIcon, border="0")
-        self.percentage_btn = Button(root, image=percentageIcon, border="0")
-        self.equalTo_btn = Button(root, image=equalToIcon, border="0")
+        addIcon, subtractIcon, multiplyIcon, divideIcon, percentageIcon, equalToIcon = IconsLoader(
+            "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\operators\\").loadOperatorIcons()
+        self.add_btn = Button(self.root, image=addIcon, border=self.border)
+        self.subtract_btn = Button(
+            self.root, image=subtractIcon, border=self.border)
+        self.multiply_btn = Button(
+            self.root, image=multiplyIcon, border=self.border)
+        self.divide_btn = Button(
+            self.root, image=divideIcon, border=self.border)
+        self.percentage_btn = Button(
+            self.root, image=percentageIcon, border=self.border)
+        self.equalTo_btn = Button(
+            self.root, image=equalToIcon, border=self.border)
 
     def createOtherButtons(self) -> None:
-        clearIcons, backspaceIcon, decimalIcon = IconsLoader().loadOtherIcons()
-        self.clear_btn = Button(root, image=clearIcons, border="0")
-        self.backspaceIcon_btn = Button(root, image=backspaceIcon, border="0")
-        self.decimalIcon_btn = Button(root, image=decimalIcon, border="0")
+        clearIcons, backspaceIcon, decimalIcon = IconsLoader(
+            "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\others\\").loadOtherIcons()
+        self.clear_btn = Button(
+            self.root, image=clearIcons, border=self.border)
+        self.backspaceIcon_btn = Button(
+            self.root, image=backspaceIcon, border=self.border)
+        self.decimalIcon_btn = Button(
+            self.root, image=decimalIcon, border=self.border)
 
     def placeButtons(self) -> None:
         # Packing the buttons
@@ -119,5 +139,23 @@ class PlaceIcons:
         self.decimalIcon_btn.place(x=290, y=560)
         self.equalTo_btn.place(x=410, y=560)
 
+    def placeIconsOnGUI(self):
+        self.createDigitButtons()
+        self.createOperatorButtons()
+        self.createOtherButtons()
+        self.placeButtons()
 
-root.mainloop()
+
+def main():
+    root = Tk()  # master/root windows
+    root.title("Calculator")
+    root.geometry("600x850")
+    # root.configure(bg="black")
+
+    PlaceIcons(root).placeIconsOnGUI()
+    input()
+    root.mainloop()
+
+
+if __name__ == '__main__':
+    main()
