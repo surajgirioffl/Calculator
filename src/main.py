@@ -6,6 +6,7 @@
      @last modified: 13th Sep 2022
 """
 
+from gc import garbage
 from tkinter import *
 from sys import path
 path[0] = "D:\\Programming\\Projects\\Python\\GUI Projects\\Calculator"
@@ -74,6 +75,20 @@ class PlaceIcons:
             self.digitButtons.append(Button(
                 self.root, image=digitIconsTuple[i], border=self.border))
 
+        """
+            Issue:
+                * Icons are not showing up in the GUI.
+                * The reason is that Python Garbage Collector is deleting the PhotoImage objects because they are stored as a local variable at somewhere in 'Button' objects.
+                * So, Now we will create an custom attribute name 'saveImage' in 'Button' class and store the PhotoImage object in it.
+                * So, now the PhotoImage object's reference stored in 'saveImage' attribute of 'Button' class and if local variable containing the same reference deleted then also only alias will deleted, not the actual object reference.
+                * Now, the attribute 'saveImage' will an instance attribute and will not be deleted by Python Garbage Collector until existence of 'Button' object.
+                * In Button object, the PhotoImage object referenced pointed by it, will still available in it's scope because it's reference are stored in one of it's attribute.
+                * See more: https://stackoverflow.com/questions/3359717/cannot-display-an-image-in-tkinter
+        """
+
+        for i in range(10):
+            self.digitButtons[i].saveImage = digitIconsTuple[i]
+
     def createOperatorButtons(self) -> None:
         addIcon, subtractIcon, multiplyIcon, divideIcon, percentageIcon, equalToIcon = IconsLoader(
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\operators\\").loadOperatorIcons()
@@ -89,6 +104,14 @@ class PlaceIcons:
         self.equalTo_btn = Button(
             self.root, image=equalToIcon, border=self.border)
 
+        # adding a 'saveImage' attribute to all 'Button' instances to store the reference of the PhotoImage object. So, that garbage collection will not delete them.
+        self.add_btn.saveImage = addIcon
+        self.add_btn.subtract_btn = subtractIcon
+        self.multiply_btn.saveImage = multiplyIcon
+        self.divide_btn.saveImage = divideIcon
+        self.percentage_btn.saveImage = percentageIcon
+        self.equalTo_btn.saveImage = equalToIcon
+
     def createOtherButtons(self) -> None:
         clearIcons, backspaceIcon, decimalIcon = IconsLoader(
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\others\\").loadOtherIcons()
@@ -98,6 +121,11 @@ class PlaceIcons:
             self.root, image=backspaceIcon, border=self.border)
         self.decimalIcon_btn = Button(
             self.root, image=decimalIcon, border=self.border)
+
+        # adding a 'saveImage' attribute to all 'Button' instances to store the reference of the PhotoImage object. So, that garbage collection will not delete them.
+        self.clear_btn.saveImage = clearIcons
+        self.backspaceIcon_btn.saveImage = backspaceIcon
+        self.decimalIcon_btn.saveImage = decimalIcon
 
     def placeButtons(self) -> None:
         # Packing the buttons
@@ -143,7 +171,6 @@ def main():
     # root.configure(bg="black")
 
     PlaceIcons(root).placeIconsOnGUI()
-    input()
     root.mainloop()
 
 
