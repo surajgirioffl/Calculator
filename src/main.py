@@ -168,9 +168,16 @@ def main():
     root = Tk()  # master/root windows
     root.title("Calculator")
     root.geometry("600x850")
+    # Creating a Canvas on root then place the icons on it instead of root. So that icons will also change it's position if we resize the root window.
+    # Because when window is resized (restore down, maximize, minimize) then canvas will also resize according to it and icons placed on canvas, so by default will move with it.
+    iconsArea = Canvas(root, width=600, height=850)
+    iconsArea.create_rectangle(
+        30, 50, 540, 690, outline="#2575fc", fill=None, width=10)
+    iconsArea.pack()
+
     # root.configure(bg="black")
 
-    PlaceIcons(root).placeIconsOnGUI()
+    PlaceIcons(iconsArea).placeIconsOnGUI()
     root.mainloop()
 
 
