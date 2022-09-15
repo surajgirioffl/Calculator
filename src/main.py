@@ -6,7 +6,6 @@
      @last modified: 13th Sep 2022
 """
 
-from gc import garbage
 from tkinter import *
 from sys import path
 path[0] = "D:\\Programming\\Projects\\Python\\GUI Projects\\Calculator"
