@@ -8,6 +8,7 @@
 
 from tkinter import *
 from sys import path
+from typing import Literal
 path[0] = "D:\\Programming\\Projects\\Python\\GUI Projects\\Calculator"
 
 
@@ -109,9 +110,25 @@ class PlaceIcons:
         Class for placing all icons in the GUI.
     """
 
-    def __init__(self, master: Tk, border: str = "0") -> None:
+    def __init__(self, master: Tk, border: str = "0", cursorType: Literal["circle", "hand2", "..."] = "arrow") -> None:
+        """
+            Summary:
+                Constructor for PlaceIcons class.
+
+        Args:
+            master (Tk):
+                Description: The window where you want to place all the icons.
+            border (str, optional): 
+                Description: Defaults to "0".
+            cursorType (Literal["circle","hand2","..."], optional): 
+                Description: Defaults to "arrow".
+
+        Returns:
+            None
+        """
         self.root = master
         self.border = border
+        self.cursorType = cursorType
         self.digitButtons = []
 
     def createDigitButtons(self) -> None:
@@ -129,7 +146,7 @@ class PlaceIcons:
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\digits\\").loadDigitIcons()
         for i in range(10):
             self.digitButtons.append(Button(
-                self.root, image=digitIconsTuple[i], border=self.border))
+                self.root, image=digitIconsTuple[i], border=self.border, cursor=self.cursorType))
 
         """
             Issue:
@@ -156,17 +173,18 @@ class PlaceIcons:
         """
         addIcon, subtractIcon, multiplyIcon, divideIcon, percentageIcon, equalToIcon = IconsLoader(
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\operators\\").loadOperatorIcons()
-        self.add_btn = Button(self.root, image=addIcon, border=self.border)
+        self.add_btn = Button(self.root, image=addIcon,
+                              border=self.border, cursor=self.cursorType)
         self.subtract_btn = Button(
-            self.root, image=subtractIcon, border=self.border)
+            self.root, image=subtractIcon, border=self.border, cursor=self.cursorType)
         self.multiply_btn = Button(
-            self.root, image=multiplyIcon, border=self.border)
+            self.root, image=multiplyIcon, border=self.border, cursor=self.cursorType)
         self.divide_btn = Button(
-            self.root, image=divideIcon, border=self.border)
+            self.root, image=divideIcon, border=self.border, cursor=self.cursorType)
         self.percentage_btn = Button(
-            self.root, image=percentageIcon, border=self.border)
+            self.root, image=percentageIcon, border=self.border, cursor=self.cursorType)
         self.equalTo_btn = Button(
-            self.root, image=equalToIcon, border=self.border)
+            self.root, image=equalToIcon, border=self.border, cursor=self.cursorType)
 
         # adding a 'saveImage' attribute to all 'Button' instances to store the reference of the PhotoImage object. So, that garbage collection will not delete them.
         self.add_btn.saveImage = addIcon
@@ -188,11 +206,11 @@ class PlaceIcons:
         clearIcons, backspaceIcon, decimalIcon = IconsLoader(
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\others\\").loadOtherIcons()
         self.clear_btn = Button(
-            self.root, image=clearIcons, border=self.border)
+            self.root, image=clearIcons, border=self.border, cursor=self.cursorType)
         self.backspaceIcon_btn = Button(
-            self.root, image=backspaceIcon, border=self.border)
+            self.root, image=backspaceIcon, border=self.border, cursor=self.cursorType)
         self.decimalIcon_btn = Button(
-            self.root, image=decimalIcon, border=self.border)
+            self.root, image=decimalIcon, border=self.border, cursor=self.cursorType)
 
         # adding a 'saveImage' attribute to all 'Button' instances to store the reference of the PhotoImage object. So, that garbage collection will not delete them.
         self.clear_btn.saveImage = clearIcons
@@ -261,7 +279,7 @@ def main():
 
     # root.configure(bg="black")
 
-    PlaceIcons(iconsArea).placeIconsOnGUI()
+    PlaceIcons(iconsArea, cursorType="hand2").placeIconsOnGUI()
     root.mainloop()
 
 
