@@ -13,8 +13,24 @@ path[0] = "D:\\Programming\\Projects\\Python\\GUI Projects\\Calculator"
 
 
 class IconsLoader:
+    """
+        IconsLoader class for loading all icons for calculator.
+
+        Attributes:
+            abspath (str): Absolute path of the icons directory.
+            relpath (str): Relative path of the icons directory.
+
+        Methods:
+            ...
+    """
 
     def __init__(self, abspath: str, relpath: str = ...) -> None:
+        """
+            Constructor for IconsLoader class.
+        Args:
+            abspath (str): Absolute path of the icons directory.
+            relpath (str, optional): Relative path of the icons directory. Defaults to ....
+        """
         self.abspath = abspath
         self.relpath = relpath
 
@@ -25,6 +41,16 @@ class IconsLoader:
         return self.__str__()
 
     def loadDigitIcons(self) -> tuple[PhotoImage, ...]:
+        """
+        Summary:
+            Method to load all digits icons.
+
+        Parameters:
+            None
+
+        Returns:
+            tuple[PhotoImage, ...]: PhotoImage objects of all digits.
+        """
         abspath = self.abspath
         zero = PhotoImage(file=f"{abspath}zero.png")
         one = PhotoImage(file=f"{abspath}one.png")
@@ -39,6 +65,17 @@ class IconsLoader:
         return (zero, one, two, three, four, five, six, seven, eight, nine)
 
     def loadOperatorIcons(self) -> tuple[PhotoImage, ...]:
+        """
+        Summary:
+            Method to load all operators icons.
+
+        Parameters:
+            None
+
+        Returns:
+            tuple[PhotoImage, ...]: PhotoImage objects of all operators icons.
+        """
+
         abspath = self.abspath
         add = PhotoImage(file=f"{abspath}add.png")
         subtract = PhotoImage(file=f"{abspath}subtract.png")
@@ -49,6 +86,17 @@ class IconsLoader:
         return (add, subtract, multiply, divide, percentage, equalTo)
 
     def loadOtherIcons(self) -> tuple[PhotoImage, ...]:
+        """
+        Summary:
+            Method to load rest icons.
+
+        Parameters:
+            None
+
+        Returns:
+            tuple[PhotoImage, ...]: PhotoImage objects of all remaining icons.
+        """
+
         abspath = self.abspath
         clear = PhotoImage(file=f"{abspath}clear.png")
         backspace = PhotoImage(file=f"{abspath}backspace.png")
@@ -57,6 +105,11 @@ class IconsLoader:
 
 
 class PlaceIcons:
+    """
+    Summary:
+        Class for placing all icons in the GUI.
+    """
+
     def __init__(self, master: Tk, border: str = "0") -> None:
         self.root = master
         self.border = border
@@ -68,6 +121,10 @@ class PlaceIcons:
                 Creates digit buttons and stores them in a list 'digitButtons' attribute of the instance.
                 digitButtons is a list of 10 buttons in which button are stored in the order of their index.
                 E.g., digitButtons[0] is the button for 0, digitButtons[1] is the button for 1 and so on.
+            Parameter:
+                None
+            Returns:
+                None
         """
         digitIconsTuple = IconsLoader(
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\digits\\").loadDigitIcons()
@@ -90,6 +147,14 @@ class PlaceIcons:
             self.digitButtons[i].saveImage = digitIconsTuple[i]
 
     def createOperatorButtons(self) -> None:
+        """
+            Summary:
+                Creates operator buttons (with the help of class IconsLoader) and stores all as attributes of the instance.
+            Parameters:
+                None
+            Returns:
+                None
+        """
         addIcon, subtractIcon, multiplyIcon, divideIcon, percentageIcon, equalToIcon = IconsLoader(
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\operators\\").loadOperatorIcons()
         self.add_btn = Button(self.root, image=addIcon, border=self.border)
@@ -113,6 +178,14 @@ class PlaceIcons:
         self.equalTo_btn.saveImage = equalToIcon
 
     def createOtherButtons(self) -> None:
+        """
+            Summary:
+                Creates rest others buttons (with the help of class IconsLoader) and stores all as attributes of the instance.
+            Parameters:
+                None
+            Returns:
+                None
+        """
         clearIcons, backspaceIcon, decimalIcon = IconsLoader(
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\others\\").loadOtherIcons()
         self.clear_btn = Button(
@@ -128,6 +201,14 @@ class PlaceIcons:
         self.decimalIcon_btn.saveImage = decimalIcon
 
     def placeButtons(self) -> None:
+        """
+            Summary:
+                Place all buttons in the GUI at absolute position. 
+            Parameters:
+                None
+            Returns:
+                None
+        """
         # Packing the buttons
         # space between two button on x-axis (column width) = 120 units
         # space between two rows on y-axis (row height) = 120 units
@@ -165,6 +246,10 @@ class PlaceIcons:
 
 
 def main():
+    """
+        Summary:
+            Main function of the program from where execution of the program starts.
+    """
     root = Tk()  # master/root windows
     root.title("Calculator")
     root.geometry("600x850")
