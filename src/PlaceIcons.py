@@ -2,6 +2,7 @@ from IconsLoader import IconsLoader
 from typing import Literal
 from functools import partial
 from tkinter import *
+import calculation as cal
 
 
 class PlaceIcons:
@@ -18,9 +19,9 @@ class PlaceIcons:
         Args:
             master (Tk):
                 Description: The window where you want to place all the icons.
-            border (str, optional): 
+            border (str, optional):
                 Description: Defaults to "0".
-            cursorType (Literal["circle","hand2","..."], optional): 
+            cursorType (Literal["circle","hand2","..."], optional):
                 Description: Defaults to "arrow".
 
         Returns:
@@ -46,7 +47,7 @@ class PlaceIcons:
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\digits\\").loadDigitIcons()
         for i in range(10):
             self.digitButtons.append(Button(
-                self.root, image=digitIconsTuple[i], border=self.border, cursor=self.cursorType, command=partial(print, i)))
+                self.root, image=digitIconsTuple[i], border=self.border, cursor=self.cursorType, command=partial(cal.digitButtonClick, i)))
 
         """
             Issue:
@@ -74,17 +75,17 @@ class PlaceIcons:
         addIcon, subtractIcon, multiplyIcon, divideIcon, percentageIcon, equalToIcon = IconsLoader(
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\operators\\").loadOperatorIcons()
         self.add_btn = Button(self.root, image=addIcon,
-                              border=self.border, cursor=self.cursorType)
+                              border=self.border, cursor=self.cursorType, command=lambda: cal.operatorButtonClick("+"))
         self.subtract_btn = Button(
-            self.root, image=subtractIcon, border=self.border, cursor=self.cursorType)
+            self.root, image=subtractIcon, border=self.border, cursor=self.cursorType, command=lambda: cal.operatorButtonClick("-"))
         self.multiply_btn = Button(
-            self.root, image=multiplyIcon, border=self.border, cursor=self.cursorType)
+            self.root, image=multiplyIcon, border=self.border, cursor=self.cursorType, command=lambda: cal.operatorButtonClick("x"))
         self.divide_btn = Button(
-            self.root, image=divideIcon, border=self.border, cursor=self.cursorType)
+            self.root, image=divideIcon, border=self.border, cursor=self.cursorType, command=lambda: cal.operatorButtonClick("÷"))
         self.percentage_btn = Button(
-            self.root, image=percentageIcon, border=self.border, cursor=self.cursorType)
+            self.root, image=percentageIcon, border=self.border, cursor=self.cursorType, command=lambda: cal.operatorButtonClick("%"))
         self.equalTo_btn = Button(
-            self.root, image=equalToIcon, border=self.border, cursor=self.cursorType)
+            self.root, image=equalToIcon, border=self.border, cursor=self.cursorType, command=lambda: cal.equalToButtonClick())
 
         # adding a 'saveImage' attribute to all 'Button' instances to store the reference of the PhotoImage object. So, that garbage collection will not delete them.
         self.add_btn.saveImage = addIcon
@@ -106,11 +107,11 @@ class PlaceIcons:
         clearIcons, backspaceIcon, decimalIcon = IconsLoader(
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\others\\").loadOtherIcons()
         self.clear_btn = Button(
-            self.root, image=clearIcons, border=self.border, cursor=self.cursorType)
+            self.root, image=clearIcons, border=self.border, cursor=self.cursorType, command=lambda: cal.clearButtonClick())
         self.backspaceIcon_btn = Button(
-            self.root, image=backspaceIcon, border=self.border, cursor=self.cursorType)
+            self.root, image=backspaceIcon, border=self.border, cursor=self.cursorType, command=lambda: cal.backspaceButtonClick())
         self.decimalIcon_btn = Button(
-            self.root, image=decimalIcon, border=self.border, cursor=self.cursorType)
+            self.root, image=decimalIcon, border=self.border, cursor=self.cursorType,  command=lambda: cal.decimalButtonClick())
 
         # adding a 'saveImage' attribute to all 'Button' instances to store the reference of the PhotoImage object. So, that garbage collection will not delete them.
         self.clear_btn.saveImage = clearIcons

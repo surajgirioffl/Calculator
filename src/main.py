@@ -9,6 +9,7 @@
 from tkinter import *
 from sys import path
 from PlaceIcons import PlaceIcons
+import calculation as cal
 path[0] = "D:\\Programming\\Projects\\Python\\GUI Projects\\Calculator"
 
 
@@ -27,14 +28,23 @@ def main():
     iconsArea.create_rectangle(
         30, 50, 540, 690, outline="#2575fc", fill=None, width=10)
     iconsArea.pack()
+    # PlaceIcons(iconsArea, cursorType="hand2").placeIconsOnGUI()
     PlaceIcons(iconsArea, cursorType="hand2").placeIconsOnGUI()
-    PlaceIcons(iconsArea).placeIconsOnGUI()
-    userText = Entry(iconsArea, width=20, font="Calibri 30",
-                     textvariable=StringVar(value="0"))
-    userText.place(x=25, y=700)
+
+    global userText
+    userText = StringVar(iconsArea, value="")
+    global resultText
+    resultText = StringVar(iconsArea, value="")
+    cal.setIdentifiers(userText, iconsArea)
+
+    cal.setIdentifiers(userText, resultText)
+    inputArea = Entry(iconsArea, width=20, font="Calibri 30",
+                      textvariable=userText)
+    inputArea.place(x=25, y=700)
+    inputArea.focus()
 
     resultLabel = Label(iconsArea, width=5,
-                        font="Calibri 30", bg=None, text=None)
+                        font="Calibri 30", bg="black", fg="magenta", textvariable=resultText)
     resultLabel.place(x=440, y=700)
     root.mainloop()
     # root.configure(bg="black")
