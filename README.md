@@ -1,4 +1,4 @@
-# Auto Page Reloader
+# Calculator GUI
 
 ## Authors
 
