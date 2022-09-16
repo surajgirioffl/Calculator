@@ -8,6 +8,7 @@
 
 from tkinter import *
 from sys import path
+from functools import partial
 path[0] = "D:\\Programming\\Projects\\Python\\GUI Projects\\Calculator"
 
 
@@ -129,7 +130,7 @@ class PlaceIcons:
             "D:\Programming\Projects\Python\GUI Projects\Calculator\icons\digits\\").loadDigitIcons()
         for i in range(10):
             self.digitButtons.append(Button(
-                self.root, image=digitIconsTuple[i], border=self.border))
+                self.root, image=digitIconsTuple[i], border=self.border, command=partial(print, i)))
 
         """
             Issue:
@@ -202,7 +203,7 @@ class PlaceIcons:
     def placeButtons(self) -> None:
         """
             Summary:
-                Place all buttons in the GUI at absolute position. 
+                Place all buttons in the GUI at absolute position.
             Parameters:
                 None
             Returns:
@@ -262,6 +263,13 @@ def main():
     # root.configure(bg="black")
 
     PlaceIcons(iconsArea).placeIconsOnGUI()
+    userText = Entry(iconsArea, width=20, font="Calibri 30",
+                     textvariable=StringVar(value="0"))
+    userText.place(x=25, y=700)
+
+    resultLabel = Label(iconsArea, width=5,
+                        font="Calibri 30", bg=None, text=None)
+    resultLabel.place(x=440, y=700)
     root.mainloop()
 
 
