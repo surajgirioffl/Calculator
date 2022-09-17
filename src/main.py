@@ -31,9 +31,7 @@ def main():
     # PlaceIcons(iconsArea, cursorType="hand2").placeIconsOnGUI()
     PlaceIcons(iconsArea, cursorType="hand2").placeIconsOnGUI()
 
-    global userText
     userText = StringVar(iconsArea, value="")
-    global resultText
     resultText = StringVar(iconsArea, value="")
     cal.setIdentifiers(userText, iconsArea)
 
@@ -41,7 +39,6 @@ def main():
     inputArea = Entry(iconsArea, width=20, font="Calibri 30",
                       textvariable=userText)
     inputArea.place(x=25, y=700)
-    inputArea.focus()
 
     resultLabel = Label(iconsArea, width=5,
                         font="Calibri 30", bg="black", fg="magenta", textvariable=resultText)
