@@ -156,7 +156,15 @@ class PlaceIcons:
         self.decimalIcon_btn.place(x=290, y=560)
         self.equalTo_btn.place(x=410, y=560)
 
-    def placeIconsOnGUI(self):
+    def placeIconsOnGUI(self) -> None:
+        """
+            Summary:
+                Place all icons on the GUI at absolute position.
+            Parameters:
+                None
+            Returns:
+                None
+        """
         self.createDigitButtons()
         self.createOperatorButtons()
         self.createOtherButtons()
