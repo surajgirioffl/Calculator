@@ -36,13 +36,13 @@ def main():
     cal.setIdentifiers(userText, iconsArea)
 
     cal.setIdentifiers(userText, resultText)
-    inputArea = Entry(iconsArea, width=20, font="Calibri 30",
+    inputArea = Entry(iconsArea, width=17, font="Calibri 30",
                       textvariable=userText)
     inputArea.place(x=25, y=700)
 
-    resultLabel = Label(iconsArea, width=5,
+    resultLabel = Label(iconsArea, width=8,
                         font="Calibri 30", bg="black", fg="magenta", textvariable=resultText)
-    resultLabel.place(x=440, y=700)
+    resultLabel.place(x=380, y=700)
     root.mainloop()
     # root.configure(bg="black")
 
