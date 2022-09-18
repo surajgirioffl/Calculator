@@ -3,7 +3,7 @@
      * author: Suraj Kumar Giri.
      * Date: 05-09-2022 (Started)
      * Time: 02: 34: 39 (Started)
-     * last modified: 16th Sep 2022
+     * last modified: 19th Sep 2022
 """
 
 from tkinter import *
@@ -33,9 +33,7 @@ def main():
 
     userText = StringVar(iconsArea, value="")
     resultText = StringVar(iconsArea, value="")
-    cal.setIdentifiers(userText, iconsArea)
 
-    cal.setIdentifiers(userText, resultText)
     inputArea = Entry(iconsArea, width=17, font="Calibri 30",
                       textvariable=userText)
     inputArea.place(x=25, y=700)
@@ -43,6 +41,7 @@ def main():
     resultLabel = Label(iconsArea, width=8,
                         font="Calibri 30", bg="black", fg="magenta", textvariable=resultText)
     resultLabel.place(x=380, y=700)
+    cal.setIdentifiers(userText, resultText, inputArea)
     root.mainloop()
     # root.configure(bg="black")
 
