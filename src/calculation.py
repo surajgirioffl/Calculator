@@ -25,7 +25,11 @@ def equalToButtonClick() -> None:
     allText = allText.replace("%", "*0.01")
     print(allText)
     try:
-        result = eval(allText)
+        if allText == "":
+            global userText
+            result = eval(userText.get())
+        else:
+            result = eval(allText)
     except ZeroDivisionError:
         resultText.set("∞")
     except:
