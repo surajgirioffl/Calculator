@@ -34,8 +34,10 @@ def equalToButtonClick() -> None:
             result = eval(allText)
         except ZeroDivisionError:
             resultText.set("∞")
-        except:
+        except Exception as e:
             resultText.set("Error")
+            print(e.__class__.__name__)  # to print class name of exception
+            print(e)
         else:
             resultText.set(result)
     else:
