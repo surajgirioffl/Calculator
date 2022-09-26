@@ -2,6 +2,21 @@ from tkinter import Entry, StringVar
 
 
 def setIdentifiers(userTextRef: StringVar, resultTextRef: StringVar, entryObjectRef: Entry) -> None:
+    """
+        @brief: This function is used to set the global variables.
+
+        @detail:
+            Function to set the global variables with the reference of StringVar's object of the entry widget and the result label in the GUI.
+
+        @param 
+            userTextRef (StringVar) - object of the entry widget.
+            resultTextRef (StringVar) - object of the result label.
+            entryObjectRef (Entry) - object of the entry widget to modify the StringVar directly.
+
+        @return
+            None
+
+    """
     global userText, resultText, entryObject
     userText = userTextRef
     resultText = resultTextRef
@@ -12,6 +27,15 @@ allText = str()
 
 
 def digitButtonClick(value: str | int) -> None:
+    """
+        @brief: This function is used to add the digit to the entry widget.
+
+        @param:
+            value (str | int): value of the digit.
+
+        @return:
+            None
+    """
     global allText
     allText = userText.get()  # fetching the current text from the entry widget
     allText += str(value)  # appending the button's value to the 'allText'
